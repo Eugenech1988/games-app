@@ -11,7 +11,7 @@ const CreatorsList: React.FC = () => {
   useEffect(() => {
     const fetchCreators = async () => {
       try {
-        const response = await rawgApi.get('/creators', {params: {page_size: 15}});
+        const response = await rawgApi.get('/creators');
         dispatch(addCreators(response.data.results));
       } catch (error) {
         console.error('Error fetching games:', error);

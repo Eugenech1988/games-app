@@ -10,7 +10,7 @@ const StoresList: React.FC = () => {
   useEffect(() => {
     const fetchStores = async () => {
       try {
-        const response = await rawgApi.get('/stores', {params: {page_size: 15}});
+        const response = await rawgApi.get('/stores');
         dispatch(addStores(response.data.results));
       } catch (error) {
         console.error('Error fetching games:', error);
