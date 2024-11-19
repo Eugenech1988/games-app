@@ -20,9 +20,7 @@ As was written on technical assignment we need to write a small app what will be
 
 Also, we need to use localStorage to store state of APP.
 
-So one thing is that we don't need next.js this time because all af components needs to be client so we can yous react.
-
-For fetching we used axios.
+For fetching we used axios, not controlled with react query or RTK query for now.
 
 For tabs, we used react-tabs instead react-router this time because we don't need it.
 
@@ -40,3 +38,6 @@ What I'll what to add for it to the future:
 8. Add helpers function for the rendering.
 9. Use tailwind inside scss modules.
 10. Add utils function to decrease markup
+11. React query for caching.
+12. Mouseflow or something like this to count user mouse actions.
+13. Analytics.

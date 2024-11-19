@@ -1,21 +1,24 @@
-import React, { useEffect, useState } from 'react';
+'use client';
+import React, { useEffect } from 'react';
 import rawgApi from '@/api';
-import { Creator } from '@/shared/types.ts';
+import { useAppDispatch, useAppSelector } from '@/lib/hooks';
+import { addCreators } from '@/lib/slices/contentSlice';
 
 const CreatorsList: React.FC = () => {
-  const [creators, setCreators] = useState<Creator[]>([]);
+  const dispatch = useAppDispatch();
+  const creators = useAppSelector(state => state.content.creators);
 
   useEffect(() => {
     const fetchCreators = async () => {
       try {
         const response = await rawgApi.get('/creators', {params: {page_size: 15}});
-        setCreators(response.data.results);
+        dispatch(addCreators(response.data.results));
       } catch (error) {
         console.error('Error fetching games:', error);
       }
     };
-
-    fetchCreators();
+    if (!creators.length)
+      fetchCreators();
   }, []);
   return (
     <ul className="md:grid md:grid-cols-3 md:gap-2 items-stretch pt-2">

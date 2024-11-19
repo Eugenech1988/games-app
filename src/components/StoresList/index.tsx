@@ -1,21 +1,23 @@
-import React, { useEffect, useState } from 'react';
+'use client'
+import React, { useEffect } from 'react';
+import { addStores } from '@/lib/slices/contentSlice';
+import { useAppSelector, useAppDispatch } from '@/lib/hooks';
 import rawgApi from '@/api';
-import { Store } from '@/shared/types.ts';
 
 const StoresList: React.FC = () => {
-  const [stores, setStores] = useState<Store[]>([]);
-
+  const dispatch = useAppDispatch();
+  const stores = useAppSelector(state => state.content.stores);
   useEffect(() => {
     const fetchStores = async () => {
       try {
         const response = await rawgApi.get('/stores', {params: {page_size: 15}});
-        setStores(response.data.results);
+        dispatch(addStores(response.data.results));
       } catch (error) {
         console.error('Error fetching games:', error);
       }
     };
-
-    fetchStores();
+    if (!stores.length)
+      fetchStores();
   }, []);
 
   const handleStoreClick = (domain: string) => () => {

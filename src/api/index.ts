@@ -1,10 +1,11 @@
 import axios from 'axios';
 
 const rawgApi = axios.create({
-  baseURL: process.env.VITE_RAWG_BASE_URL,
-   params: {
-    key: process.env.VITE_RAWG_API_KEY,
-   }
+  baseURL: 'https://api.rawg.io/api',
+  params: {
+    key: '616f596c0c9b4bc09604476e1105fe0b',
+    page_size: 15,
+  }
 })
 
 export default rawgApi;

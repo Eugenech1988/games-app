@@ -1,24 +1,29 @@
+'use client';
 import React, { useEffect, useState } from 'react';
 import rawgApi from '@/api';
 import GameModal from '@/components/GameModal';
-import { Game } from '@/shared/types.ts';
+import { Game } from '@/shared/types';
+import { useAppDispatch, useAppSelector } from '@/lib/hooks';
+import { addGames } from '@/lib/slices/contentSlice';
 
 const GamesList: React.FC = () => {
-  const [games, setGames] = useState<Game[]>([]);
   const [gameDetails, setGameDetails] = useState<Game | null>(null);
   const [isGameModalOpen, setIsGameModalOpen] = useState<boolean>(false);
+
+  const dispatch = useAppDispatch();
+  const games = useAppSelector(state => state.content.games);
 
   useEffect(() => {
     const fetchGames = async () => {
       try {
-        const response = await rawgApi.get('/games', {params: {page_size: 15}});
-        setGames(response.data.results);
+        const response = await rawgApi.get('/games');
+        dispatch(addGames(response.data.results));
       } catch (error) {
         console.error('Error fetching games:', error);
       }
     };
-
-    fetchGames();
+    if (!games.length)
+      fetchGames();
   }, []);
 
   const handleGameClick = (game: Game) => () => {

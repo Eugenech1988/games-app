@@ -1,3 +1,14 @@
+export interface UserProfile {
+  id: string; // Unique identifier for the user
+  email: string; // User's email address
+  verified_email: boolean; // Indicates if the email is verified
+  name: string; // Full name of the user
+  given_name: string; // First name of the user
+  family_name: string; // Last name of the user
+  picture: string; // URL to the user's profile picture
+}
+
+
 export interface Game {
   id: number;
   slug: string;
