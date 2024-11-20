@@ -1,5 +1,6 @@
 'use client';
 import React from 'react';
+import Image from 'next/image';
 import axios from 'axios';
 import { useGoogleLogin } from '@react-oauth/google';
 import { useAppSelector, useAppDispatch } from '@/lib/hooks';
@@ -39,7 +40,12 @@ const Login: React.FC = () => {
         className={'flex mb-3 flex-center mx-auto items-center bg-gray-700 text-gray-200 leading-[40px] px-[12px] rounded-full text-sm cursor-pointer hover:bg-gray-500 hover:text-white transition duration-300'}
         onClick={(login === '') ? () => handleLogin() : handleUnLogin}
       >
-        <img className="w-[20px] h-full mr-[10px]" src="/google-icon.svg" alt="google"/>
+        <Image
+          src='/google-icon.svg'
+          className="w-[20px] h-full mr-[10px]"
+          alt="google"
+        />
+        {/*<img className="w-[20px] h-full mr-[10px]" src="/google-icon.svg" alt="google"/>*/}
         <span className="h-10 block">
       {(login === '') ?
         'Sign in with google'

@@ -1,5 +1,6 @@
 'use client';
 import React, { useState } from 'react';
+import Image from 'next/image';
 import rawgApi from '@/api';
 import GameModal from '@/components/GameModal';
 import { Game } from '@/shared/types';
@@ -67,7 +68,12 @@ const GamesList: React.FC = () => {
         {games && games.map((game: Game) => (
           <li onClick={handleGameClick(game)} className="cursor-pointer mb-2 md:mb-0" key={game.id}>
             <h2 className="mb-1 text-gray-700">{game.name}</h2>
-            <img className="w-full md:w-[200px] mb-1" src={game.background_image} alt={game.name}/>
+            <Image
+              src={game.background_image}
+              alt={game.name}
+              className="w-full md:w-[200px] mb-1"
+            />
+            {/*<img className="w-full md:w-[200px] mb-1" src={game.background_image} alt={game.name}/>*/}
             <p className="text-gray-700">Released: {game.released}</p>
           </li>
         ))}
