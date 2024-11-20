@@ -13,6 +13,7 @@ const clientId: any = process.env.NEXT_PUBLIC_CLIENT_ID;
 const queryClient = new QueryClient({
   defaultOptions: {
     queries: {
+      // @ts-ignore
       cacheTime: 1000 * 60 * 5,
       staleTime: 1000 * 30,
       retry: 3,

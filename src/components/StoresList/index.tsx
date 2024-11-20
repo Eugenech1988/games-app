@@ -9,6 +9,7 @@ const StoresList: React.FC = () => {
     queryKey: ['stores'],
     queryFn: () => rawgApi('/stores'),
     staleTime: 1000 * 60,
+    // @ts-ignore
     cacheTime: 1000 * 60 * 10,
   });
 

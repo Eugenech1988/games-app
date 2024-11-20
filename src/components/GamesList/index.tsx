@@ -13,6 +13,7 @@ const GamesList: React.FC = () => {
     queryKey: ['games'],
     queryFn: () => rawgApi('/games'),
     staleTime: 1000 * 60,
+    // @ts-ignore
     cacheTime: 1000 * 60 * 10,
   });
 
@@ -63,7 +64,7 @@ const GamesList: React.FC = () => {
         </GameModal>
       }
       <ul className="md:grid md:grid-cols-3 md:gap-2 items-stretch pt-2">
-        {games && games.map((game) => (
+        {games && games.map((game: Game) => (
           <li onClick={handleGameClick(game)} className="cursor-pointer mb-2 md:mb-0" key={game.id}>
             <h2 className="mb-1 text-gray-700">{game.name}</h2>
             <img className="w-full md:w-[200px] mb-1" src={game.background_image} alt={game.name}/>

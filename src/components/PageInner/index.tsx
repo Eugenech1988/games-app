@@ -27,7 +27,7 @@ const PageInner: React.FC = () => {
             <Tabs>
               <TabList className='border-b-[1px] border-gray-700 '>
                 {tabs && tabs.map((tab: string, index: number) => (
-                  <Tab onClick={handleSetActiveTab(index)}
+                  <Tab onClick={handleSetActiveTab(index)} key={index}
                        className={`inline-block border-[1px] focus:outline-0 mb-[-1px] border-gray-700 rounded-t-lg mx-2 py-1 px-2 cursor-pointer ${activeTab == index && 'border-b-white'}`}>{tab}</Tab>
                 ))}
               </TabList>
