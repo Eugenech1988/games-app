@@ -55,7 +55,12 @@ const GamesList: React.FC = () => {
         <GameModal onClose={closeGameModal}>
           <h2 className="text-gray-900 font-medium text-xl mb-2">{gameDetails.name}</h2>
           <h2 className="text-gray-900 text-lg mb-2 font-medium">{`Released: ${gameDetails.released}`}</h2>
-          <img className="max-w-[600px] w-full mb-2" src={gameDetails.background_image} alt=""/>
+          <Image
+            className="max-w-[600px] w-full mb-2"
+            src={gameDetails.background_image}
+            alt=''
+          />
+          {/*<img className="max-w-[600px] w-full mb-2" src={gameDetails.background_image} alt=""/>*/}
           <div className="max-h-[200px] max-w-[600px] overflow-y-auto">
             {renderModalListItems('Platforms:', gameDetails.platforms.map(platform => (platform.platform.name)))}
             {renderModalListItems('Genres:', gameDetails.genres.map(genre => (genre.name)))}
