@@ -1,28 +1,29 @@
 'use client';
-import React, { useEffect } from 'react';
+import React from 'react';
 import rawgApi from '@/api';
-import { useAppDispatch, useAppSelector } from '@/lib/hooks';
-import { addCreators } from '@/lib/slices/contentSlice';
+import { useQuery } from '@tanstack/react-query';
+import { Creator } from '@/shared/types';
 
 const CreatorsList: React.FC = () => {
-  const dispatch = useAppDispatch();
-  const creators = useAppSelector(state => state.content.creators);
+  const {isPending, isError, data, error} = useQuery({
+    queryKey: ['creators'],
+    queryFn: () => rawgApi('/creators'),
+    staleTime: 1000 * 60,
+    cacheTime: 1000 * 60 * 10,
+  });
 
-  useEffect(() => {
-    const fetchCreators = async () => {
-      try {
-        const response = await rawgApi.get('/creators');
-        dispatch(addCreators(response.data.results));
-      } catch (error) {
-        console.error('Error fetching games:', error);
-      }
-    };
-    if (!creators.length)
-      fetchCreators();
-  }, []);
+  const creators = data && data.data.results;
+
+  if (isPending) {
+    return <span>Loading...</span>;
+  }
+  if (isError) {
+    return <span>Error: {error.message}</span>;
+  }
+
   return (
     <ul className="md:grid md:grid-cols-3 md:gap-2 items-stretch pt-2">
-      {creators && creators.map((creator) => (
+      {creators && creators.map((creator: Creator) => (
         <li key={creator.id}>
           <h2 className="mb-1 text-gray-700">{creator.name}</h2>
           <img className="w-full md:w-[200px] mb-1" src={creator.image} alt={creator.name}/>

@@ -1,9 +1,9 @@
 import { configureStore, combineReducers } from '@reduxjs/toolkit';
-import contentReducer from './slices/contentSlice';
+// import contentReducer from './slices/contentSlice';
 import loginReducer from './slices/loginSlice';
 
 const rootReducer = combineReducers({
-  content: contentReducer,
+  // content: contentReducer, for now we don't need to keep it
   login: loginReducer
 });
 

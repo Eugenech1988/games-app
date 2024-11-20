@@ -1,30 +1,29 @@
 'use client';
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import rawgApi from '@/api';
 import GameModal from '@/components/GameModal';
 import { Game } from '@/shared/types';
-import { useAppDispatch, useAppSelector } from '@/lib/hooks';
-import { addGames } from '@/lib/slices/contentSlice';
+import { useQuery } from '@tanstack/react-query';
 
 const GamesList: React.FC = () => {
   const [gameDetails, setGameDetails] = useState<Game | null>(null);
   const [isGameModalOpen, setIsGameModalOpen] = useState<boolean>(false);
 
-  const dispatch = useAppDispatch();
-  const games = useAppSelector(state => state.content.games);
+  const {isPending, isError, data, error} = useQuery({
+    queryKey: ['games'],
+    queryFn: () => rawgApi('/games'),
+    staleTime: 1000 * 60,
+    cacheTime: 1000 * 60 * 10,
+  });
 
-  useEffect(() => {
-    const fetchGames = async () => {
-      try {
-        const response = await rawgApi.get('/games');
-        dispatch(addGames(response.data.results));
-      } catch (error) {
-        console.error('Error fetching games:', error);
-      }
-    };
-    if (!games.length)
-      fetchGames();
-  }, []);
+  const games = data && data.data.results;
+
+  if (isPending) {
+    return <span>Loading...</span>;
+  }
+  if (isError) {
+    return <span>Error: {error.message}</span>;
+  }
 
   const handleGameClick = (game: Game) => () => {
     setIsGameModalOpen(true);
