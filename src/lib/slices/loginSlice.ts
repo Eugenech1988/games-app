@@ -1,5 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 import type { PayloadAction } from '@reduxjs/toolkit';
+import { UserProfile } from '@/shared/types';
 
 type LoginState = {
   id: string;
@@ -15,13 +16,13 @@ const loginSlice = createSlice({
   name: 'login',
   initialState,
   reducers: {
-    setLogin: (state, action: PayloadAction<any>) => {
+    setLogin: (state, action: PayloadAction<UserProfile>) => {
       state.id = action.payload.id;
       localStorage.setItem('id', action.payload.id);
     },
-    addPayment: (state, action: PayloadAction<any>) => {
+    addPayment: (state, action: PayloadAction<number>) => {
       state.payment = action.payload;
-      localStorage.setItem('payment', action.payload);
+      localStorage.setItem('payment', action.payload.toString());
     },
     unLogin: (state) => {
       state.id = '';
