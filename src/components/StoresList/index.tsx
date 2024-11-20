@@ -30,7 +30,7 @@ const StoresList: React.FC = () => {
     <ul className="md:grid md:grid-cols-3 md:gap-2 items-stretch pt-2">
       {stores && stores.map((store: Store) => (
         <li className="cursor-pointer mb-2 md:mb-0" key={store.id}
-            onClick={handleStoreClick(store.domain)}>
+            onClick={handleStoreClick(store.domain)} aria-label={store.name}>
           <h2 className="mb-1 text-gray-700">{store.name}</h2>
           <img className="w-full md:w-[200px] mb-1" src={store.image_background} alt={store.name}/>
           <p className="text-gray-700">{store.domain}</p>
