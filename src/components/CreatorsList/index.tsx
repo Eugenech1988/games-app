@@ -1,7 +1,6 @@
 'use client';
 import React from 'react';
 import rawgApi from '@/api';
-import Image from 'next/image';
 import { useQuery } from '@tanstack/react-query';
 import { Creator } from '@/shared/types';
 
@@ -28,12 +27,7 @@ const CreatorsList: React.FC = () => {
       {creators && creators.map((creator: Creator) => (
         <li key={creator.id}>
           <h2 className="mb-1 text-gray-700">{creator.name}</h2>
-          <Image
-            className="w-full md:w-[200px] mb-1"
-            src={creator.image}
-            alt={creator.name}
-          />
-          {/*<img className="w-full md:w-[200px] mb-1" src={creator.image} alt={creator.name}/>*/}
+          <img className="w-full md:w-[200px] mb-1" src={creator.image} alt={creator.name}/>
           <p className="text-gray-700">{`Games count: ${creator.games_count}`}</p>
         </li>
       ))}

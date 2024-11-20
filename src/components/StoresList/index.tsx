@@ -1,6 +1,5 @@
 'use client'
 import React from 'react';
-import Image from 'next/image';
 import rawgApi from '@/api';
 import { useQuery } from '@tanstack/react-query';
 import { Store } from '@/shared/types';
@@ -33,11 +32,6 @@ const StoresList: React.FC = () => {
         <li className="cursor-pointer mb-2 md:mb-0" key={store.id}
             onClick={handleStoreClick(store.domain)}>
           <h2 className="mb-1 text-gray-700">{store.name}</h2>
-          <Image
-            className="w-full md:w-[200px] mb-1"
-            src={store.image_background}
-            alt={store.name}
-          />
           <img className="w-full md:w-[200px] mb-1" src={store.image_background} alt={store.name}/>
           <p className="text-gray-700">{store.domain}</p>
         </li>

@@ -1,6 +1,5 @@
 'use client';
 import React, { useState } from 'react';
-import Image from 'next/image';
 import rawgApi from '@/api';
 import GameModal from '@/components/GameModal';
 import { Game } from '@/shared/types';
@@ -55,12 +54,7 @@ const GamesList: React.FC = () => {
         <GameModal onClose={closeGameModal}>
           <h2 className="text-gray-900 font-medium text-xl mb-2">{gameDetails.name}</h2>
           <h2 className="text-gray-900 text-lg mb-2 font-medium">{`Released: ${gameDetails.released}`}</h2>
-          <Image
-            className="max-w-[600px] w-full mb-2"
-            src={gameDetails.background_image}
-            alt=''
-          />
-          {/*<img className="max-w-[600px] w-full mb-2" src={gameDetails.background_image} alt=""/>*/}
+          <img className="max-w-[600px] w-full mb-2" src={gameDetails.background_image} alt=""/>
           <div className="max-h-[200px] max-w-[600px] overflow-y-auto">
             {renderModalListItems('Platforms:', gameDetails.platforms.map(platform => (platform.platform.name)))}
             {renderModalListItems('Genres:', gameDetails.genres.map(genre => (genre.name)))}
@@ -73,12 +67,7 @@ const GamesList: React.FC = () => {
         {games && games.map((game: Game) => (
           <li onClick={handleGameClick(game)} className="cursor-pointer mb-2 md:mb-0" key={game.id}>
             <h2 className="mb-1 text-gray-700">{game.name}</h2>
-            <Image
-              src={game.background_image}
-              alt={game.name}
-              className="w-full md:w-[200px] mb-1"
-            />
-            {/*<img className="w-full md:w-[200px] mb-1" src={game.background_image} alt={game.name}/>*/}
+            <img className="w-full md:w-[200px] mb-1" src={game.background_image} alt={game.name}/>
             <p className="text-gray-700">Released: {game.released}</p>
           </li>
         ))}

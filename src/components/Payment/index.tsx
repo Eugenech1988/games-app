@@ -1,6 +1,5 @@
 'use client';
 import React from 'react';
-import Image from 'next/image';
 import { addPayment } from '@/lib/slices/loginSlice';
 import { useAppDispatch, useAppSelector } from '@/lib/hooks';
 
@@ -21,12 +20,7 @@ const Payment: React.FC = () => {
         className='flex justify-between mx-auto items-center bg-blue-500 px-4 rounded-full font-light text-white uppercase text-md leading-[40px] hover:bg-blue-400 transition duration-300 mb-4'
         onClick={handleAddDiamonds}>
         <span className='mr-2'>purchase 10 diamonds</span>
-        <Image
-          className='w-[20px] h-auto'
-          src="/diamond-icon.svg"
-          alt=""
-        />
-        {/*<img className='w-[20px] h-auto' src='/diamond-icon.svg' alt=""/>*/}
+        <img className='w-[20px] h-auto' src='/diamond-icon.svg' alt=""/>
       </button>
     </div>
   );
