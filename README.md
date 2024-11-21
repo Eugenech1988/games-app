@@ -29,7 +29,7 @@ Also because we had not enough time so we don't used prettiers, precommits etc.
 What I'll what to add for it to the future:
 -
 1. Decomposition.
-2. Context API or state management.
+2. Context API or state management. // redux toolkit with persist to localStorage manually
 3. Prettier.
 4. Tests.
 5. More details for the tabs.
@@ -38,6 +38,6 @@ What I'll what to add for it to the future:
 8. Add helpers function for the rendering.
 9. Use tailwind inside scss modules.
 10. Add utils function to decrease markup
-11. React query for caching.
+11. React query for requests and caching. // added with caching from box
 12. Mouseflow or something like this to count user mouse actions.
 13. Analytics.
