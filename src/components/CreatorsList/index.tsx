@@ -18,8 +18,10 @@ const CreatorsList: React.FC = () => {
   if (isPending) {
     return <span>Loading...</span>;
   }
+
   if (isError) {
-    return <span>Error: {error.message}</span>;
+    console.log('Error caught:', error.message); // Log the error message
+    return <span role="alert">Error: {error.message}</span>;
   }
 
   return (
