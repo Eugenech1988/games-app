@@ -12,7 +12,7 @@ const Login: React.FC = () => {
   const googleLogin = useGoogleLogin({
     onSuccess: async (tokenResponse: { access_token: string}) => {
       try {
-        const response = await axios.get(process.env.NEXT_PUBLIC_AUTH_URL, {
+        const response = await axios.get((process.env.NEXT_PUBLIC_AUTH_URL || ''), {
           headers: { Authorization: `Bearer ${tokenResponse.access_token}` },
         });
         const data = response?.data;

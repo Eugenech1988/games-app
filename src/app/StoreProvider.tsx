@@ -29,6 +29,6 @@ export default function StoreProvider({
     storeRef.current = makeStore();
   }
 
-  return <QueryClientProvider client={queryClient}><GoogleOAuthProvider clientId={process.env.NEXT_PUBLIC_CLIENT_ID}><Provider
+  return <QueryClientProvider client={queryClient}><GoogleOAuthProvider clientId={process.env.NEXT_PUBLIC_CLIENT_ID || ''}><Provider
     store={storeRef.current}>{children}</Provider></GoogleOAuthProvider></QueryClientProvider>;
 }
