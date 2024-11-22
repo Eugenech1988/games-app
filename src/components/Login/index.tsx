@@ -11,19 +11,25 @@ const Login: React.FC = () => {
   const dispatch = useAppDispatch();
   const login = useAppSelector(state => state.login.id);
 
-  const handleLogin = useGoogleLogin({
-    onSuccess: async (tokenResponse: { access_token: any; }) => {
+  const googleLogin = useGoogleLogin({
+    onSuccess: async (tokenResponse: { access_token: any }) => {
       try {
-        const {data} = await axios.get(loginUrl, {
-          headers: {Authorization: `Bearer ${tokenResponse.access_token}`}
+        const response = await axios.get(loginUrl, {
+          headers: { Authorization: `Bearer ${tokenResponse.access_token}` },
         });
-        dispatch(setLogin(data));
+        const data = response?.data;
+        if (data) {
+          dispatch(setLogin(data));
+        }
       } catch (error) {
-        throw new Error((error as { message: string }).message);
+        console.error('API Error:', error);
       }
     },
-    onError: () => console.error('Login Failed')
+    onError: () => console.error('Login Failed'),
   });
+
+
+  const handleLogin = () => googleLogin();
 
   const handleUnLogin = () => {
     dispatch(unLogin());
@@ -37,7 +43,7 @@ const Login: React.FC = () => {
       }
       <button
         className={'flex mb-3 flex-center mx-auto items-center bg-gray-700 text-gray-200 leading-[40px] px-[12px] rounded-full text-sm cursor-pointer hover:bg-gray-500 hover:text-white transition duration-300'}
-        onClick={(login === '') ? () => handleLogin() : handleUnLogin}
+        onClick={(login === '') ? handleLogin : handleUnLogin}
       >
         <img className="w-[20px] h-full mr-[10px]" src="/google-icon.svg" alt="google"/>
         <span className="h-10 block">
