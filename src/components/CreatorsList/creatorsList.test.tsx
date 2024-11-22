@@ -42,10 +42,8 @@ describe('CreatorsList Component', () => {
 
     render(<CreatorsList/>);
 
-    // await waitFor(() => {
     expect(screen.getByText('John Doe')).toBeInTheDocument();
     expect(screen.getByText('Jane Smith')).toBeInTheDocument();
-    // });
 
     expect(screen.getByText('Games count: 5')).toBeInTheDocument();
     expect(screen.getByText('Games count: 10')).toBeInTheDocument();
@@ -62,7 +60,6 @@ describe('CreatorsList Component', () => {
 
     render(<CreatorsList/>);
 
-    const errorMessage = screen.getByRole('alert');
-    expect(errorMessage).toHaveTextContent('Error: API Error');
+    expect(screen.getByText(/error: API Error/i)).toBeInTheDocument();
   });
 });

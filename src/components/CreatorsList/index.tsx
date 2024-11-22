@@ -20,8 +20,7 @@ const CreatorsList: React.FC = () => {
   }
 
   if (isError) {
-    console.log('Error caught:', error.message); // Log the error message
-    return <span role="alert">Error: {error.message}</span>;
+    return <span>Error: {error.message}</span>;
   }
 
   return (
