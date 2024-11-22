@@ -69,47 +69,6 @@ describe('PageInner Component', () => {
     expect(screen.queryByText('Stores list')).not.toHaveClass('border-b-white');
   });
 
-  // it('should render correct content based on active tab', async () => {
-  //   renderWithState({ login: { id: 'mock-user-id' } });
-  //
-  //   // Verify that the "Games list" tab's content is initially rendered
-  //   await waitFor(() => {
-  //     // Check if the Games list content is visible by checking the aria-controls attribute
-  //     expect(screen.getByRole('tabpanel', {  // Checking for the Games list panel by aria-controls
-  //       name: /panel:r1:0/i
-  //     })).toBeInTheDocument();
-  //     expect(screen.getByAltText(/Grand Theft Auto V/i)).toBeInTheDocument(); // Check if an image is rendered for a game
-  //     expect(screen.getByText(/Released: 2013-09-17/i)).toBeInTheDocument(); // Check for a game's release date
-  //
-  //     // Ensure other panels are empty (no content rendered)
-  //     expect(screen.queryByRole('tabpanel', { name: /panel:r1:1/i })).not.toHaveTextContent();
-  //     expect(screen.queryByRole('tabpanel', { name: /panel:r1:2/i })).not.toHaveTextContent();
-  //   });
-  //
-  //   // Click on the "Stores list" tab
-  //   fireEvent.click(screen.getByText('Stores list'));
-  //
-  //   // Verify that "Stores list" content is rendered and other tab content is not
-  //   await waitFor(() => {
-  //     // Check if the "Stores list" tab content is visible by checking the aria-controls attribute
-  //     expect(screen.getByRole('tabpanel', { name: /panel:r1:1/i })).toBeInTheDocument();
-  //     // Ensure no content is rendered in the "Games list" or "Creators list" panels
-  //     expect(screen.queryByRole('tabpanel', { name: /panel:r1:0/i })).not.toHaveTextContent();
-  //     expect(screen.queryByRole('tabpanel', { name: /panel:r1:2/i })).not.toHaveTextContent();
-  //   });
-  //
-  //   // Click on the "Creators list" tab
-  //   fireEvent.click(screen.getByText('Creators list'));
-  //
-  //   // Verify that "Creators list" content is rendered and other tab content is not
-  //   await waitFor(() => {
-  //     // Check if "Creators list" content is visible by checking the aria-controls attribute
-  //     expect(screen.getByRole('tabpanel', { name: /panel:r1:2/i })).toBeInTheDocument();
-  //     // Ensure no content is rendered in the other panels
-  //     expect(screen.queryByRole('tabpanel', { name: /panel:r1:0/i })).not.toHaveTextContent();
-  //     expect(screen.queryByRole('tabpanel', { name: /panel:r1:1/i })).not.toHaveTextContent();
-  //   });
-  // });
   it('should render correct content based on active tab', async () => {
     renderWithState({ login: { id: 'mock-user-id' } });
 
