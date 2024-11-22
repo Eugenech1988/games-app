@@ -5,16 +5,14 @@ import { useGoogleLogin } from '@react-oauth/google';
 import { useAppSelector, useAppDispatch } from '@/lib/hooks';
 import { setLogin, unLogin } from '@/lib/slices/loginSlice';
 
-const loginUrl: any = process.env.NEXT_PUBLIC_AUTH_URL;
-
 const Login: React.FC = () => {
   const dispatch = useAppDispatch();
   const login = useAppSelector(state => state.login.id);
 
   const googleLogin = useGoogleLogin({
-    onSuccess: async (tokenResponse: { access_token: any }) => {
+    onSuccess: async (tokenResponse: { access_token: string}) => {
       try {
-        const response = await axios.get(loginUrl, {
+        const response = await axios.get(process.env.NEXT_PUBLIC_AUTH_URL, {
           headers: { Authorization: `Bearer ${tokenResponse.access_token}` },
         });
         const data = response?.data;

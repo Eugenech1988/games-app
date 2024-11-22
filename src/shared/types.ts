@@ -26,7 +26,7 @@ export interface Game {
   playtime?: number;
   suggestions_count?: number;
   updated?: string;
-  user_game?: any; // Replace 'any' with a specific type if known
+  // user_game?: any; // Replace 'any' with a specific type if known
   reviews_count?: number;
   saturated_color?: string;
   dominant_color?: string;
@@ -34,7 +34,7 @@ export interface Game {
   parent_platforms?: ParentPlatform[];
   genres: Genre[];
   stores: StoreInfo[];
-  clip?: any; // Replace 'any' if the structure is known
+  // clip?: any; // Replace 'any' if the structure is known
   tags: Tag[];
 }
 

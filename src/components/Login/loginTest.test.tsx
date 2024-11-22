@@ -17,7 +17,7 @@ jest.mock('@react-oauth/google', () => ({
 describe('Login Component', () => {
   const mockStore = configureStore();
   const initialState = { login: { id: '' } };
-  let store: any;
+  let store;
 
   beforeEach(() => {
     store = mockStore(initialState);

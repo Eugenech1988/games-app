@@ -13,7 +13,6 @@ const GamesList: React.FC = () => {
     queryKey: ['games'],
     queryFn: () => rawgApi('/games'),
     staleTime: 1000 * 60,
-    // @ts-ignore
     cacheTime: 1000 * 60 * 10,
   });
 

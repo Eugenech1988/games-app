@@ -4,6 +4,7 @@ import { Provider } from 'react-redux';
 import configureMockStore from 'redux-mock-store';
 import Payment from '@/components/Payment';
 import { addPayment } from '@/lib/slices/loginSlice';
+import { RootState } from '@/lib/store';
 
 jest.mock('@/lib/hooks', () => ({
   useAppDispatch: jest.fn(),
@@ -21,7 +22,7 @@ describe('Payment Component', () => {
 
   beforeEach(() => {
     mockUseAppDispatch.mockReturnValue(mockDispatch);
-    mockUseAppSelector.mockImplementation((selector: any) => selector(store.getState()));
+    mockUseAppSelector.mockImplementation((selector) => selector(store.getState() as RootState));
   });
 
   afterEach(() => {
@@ -53,7 +54,7 @@ describe('Payment Component', () => {
   });
 
   it('shows updated payment amount from the store', () => {
-    mockUseAppSelector.mockImplementation((selector: any) =>
+    mockUseAppSelector.mockImplementation((selector) =>
       selector({ login: { payment: 20 } })
     );
 

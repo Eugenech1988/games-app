@@ -9,7 +9,6 @@ const CreatorsList: React.FC = () => {
     queryKey: ['creators'],
     queryFn: () => rawgApi('/creators'),
     staleTime: 1000 * 60,
-    // @ts-ignore
     cacheTime: 1000 * 60 * 10,
   });
 

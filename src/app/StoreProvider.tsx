@@ -8,16 +8,13 @@ import {
 } from '@tanstack/react-query';
 import { makeStore, AppStore } from '@/lib/store';
 
-const clientId: any = process.env.NEXT_PUBLIC_CLIENT_ID;
-
 const queryClient = new QueryClient({
   defaultOptions: {
     queries: {
-      // @ts-ignore
-      cacheTime: 1000 * 60 * 5,
+      // cacheTime: 1000 * 60 * 5,
       staleTime: 1000 * 30,
       retry: 3,
-      refetchOnWindowFocus: true,
+      refetchOnWindowFocus: false,
     },
   },
 });
@@ -32,6 +29,6 @@ export default function StoreProvider({
     storeRef.current = makeStore();
   }
 
-  return <QueryClientProvider client={queryClient}><GoogleOAuthProvider clientId={clientId}><Provider
+  return <QueryClientProvider client={queryClient}><GoogleOAuthProvider clientId={process.env.NEXT_PUBLIC_CLIENT_ID}><Provider
     store={storeRef.current}>{children}</Provider></GoogleOAuthProvider></QueryClientProvider>;
 }

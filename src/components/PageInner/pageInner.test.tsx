@@ -7,11 +7,11 @@ import { configureStore } from '@reduxjs/toolkit';
 import loginReducer from '@/lib/slices/loginSlice';
 
 describe('PageInner Component', () => {
-  let store: any;
+  let store;
   const clientId = '56576647735-7lq28k8konq2kud16es3bd3q7mhfpk4m.apps.googleusercontent.com';
   const queryClient = new QueryClient();
 
-  const renderWithState = (state: any) => {
+  const renderWithState = (state) => {
     store = configureStore({
       reducer: {
         login: loginReducer
