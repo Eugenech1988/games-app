@@ -8,8 +8,7 @@ const StoresList: React.FC = () => {
   const {isPending, isError, data, error} = useQuery({
     queryKey: ['stores'],
     queryFn: () => rawgApi('/stores'),
-    staleTime: 1000 * 60,
-    cacheTime: 1000 * 60 * 10,
+    staleTime: 1000 * 60 * 10,
   });
 
   const stores = data && data.data.results;

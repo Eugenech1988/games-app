@@ -12,8 +12,7 @@ const GamesList: React.FC = () => {
   const {isPending, isError, data, error} = useQuery({
     queryKey: ['games'],
     queryFn: () => rawgApi('/games'),
-    staleTime: 1000 * 60,
-    cacheTime: 1000 * 60 * 10,
+    staleTime: 1000 * 60 * 10,
   });
 
   const games = data && data.data.results;
