@@ -1,4 +1,4 @@
-import { render, screen, fireEvent, waitFor } from '@testing-library/react';
+import { render, screen, fireEvent, waitFor, within } from '@testing-library/react';
 import { Provider } from 'react-redux';
 import { GoogleOAuthProvider } from '@react-oauth/google';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
@@ -33,9 +33,6 @@ describe('PageInner Component', () => {
   it('should render Login component when not logged in', () => {
     renderWithState({ login: { id: '' } });
 
-    // Debug the state to verify what is rendered
-    screen.debug();
-
     // Check if Login is rendered
     expect(screen.getByText('Sign in with google')).toBeInTheDocument();
     // Check if other elements (Payment, Tabs) are not rendered
@@ -46,9 +43,6 @@ describe('PageInner Component', () => {
 
   it('should render Payment and Tabs when logged in', () => {
     renderWithState({ login: { id: 'mock-user-id' } });
-
-    // Debug the state to verify what is rendered
-    screen.debug();
 
     // Check if Payment component is rendered
     expect(screen.getByText('Set your payment')).toBeInTheDocument();
@@ -116,4 +110,25 @@ describe('PageInner Component', () => {
   //     expect(screen.queryByRole('tabpanel', { name: /panel:r1:1/i })).not.toHaveTextContent();
   //   });
   // });
+  it('should render correct content based on active tab', async () => {
+    renderWithState({ login: { id: 'mock-user-id' } });
+
+    // Find the active tab panel by its role and name
+    const activeTabPanel = await screen.findByRole('tabpanel', {
+      name: /games list/i,
+    });
+
+    // Ensure the active tab panel is in the document
+    expect(activeTabPanel).toBeInTheDocument();
+
+    // Wait for the loading text to be replaced by the actual content
+    await waitFor(() => {
+      const loadingText = activeTabPanel.querySelector('span');
+      expect(loadingText).not.toBeInTheDocument(); // Ensure "Loading..." is gone
+    });
+
+    const list = await waitFor(() => activeTabPanel.querySelector('ul'));
+
+    expect(list).toBeInTheDocument();
+  });
 });
