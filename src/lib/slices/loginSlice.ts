@@ -26,6 +26,12 @@ const loginSlice = createSlice({
       state.payment = action.payload;
       localStorage.setItem('payment', action.payload.toString());
     },
+    setLoginIdFromLocalStorage: (state, action: PayloadAction<string>) => {
+      state.id = action.payload;
+    },
+    setPaymentFromLocalStorage: (state, action: PayloadAction<number>) => {
+      state.payment = action.payload;
+    },
     unLogin: (state) => {
       state.id = '';
       state.payment = null;
@@ -35,6 +41,6 @@ const loginSlice = createSlice({
   }
 });
 
-export const {setLogin, unLogin, addPayment} = loginSlice.actions;
+export const {setLogin, unLogin, addPayment, setPaymentFromLocalStorage, setLoginIdFromLocalStorage} = loginSlice.actions;
 
 export default loginSlice.reducer;
