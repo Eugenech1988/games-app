@@ -1,18 +1,28 @@
 'use client';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Login from '@/components/Login';
 import { Tabs, Tab, TabPanel, TabList } from 'react-tabs';
-import { useAppSelector } from '@/lib/hooks';
+import { useAppDispatch, useAppSelector } from '@/lib/hooks';
 import Payment from '@/components/Payment';
 import GamesList from '@/components/GamesList';
 import StoresList from '@/components/StoresList';
 import CreatorsList from '@/components/CreatorsList';
+import { setLoginIdFromLocalStorage, setPaymentFromLocalStorage } from '@/lib/slices/loginSlice';
 
 const tabs = ['Games list', 'Stores list', 'Creators list'];
 
 const PageInner: React.FC = () => {
   const [activeTab, setActiveTab] = useState<number>(0);
+  const dispatch = useAppDispatch();
   const login = useAppSelector(state => state.login.id);
+
+  useEffect(() => {
+    const loginId = localStorage.getItem('id');
+    const payment = localStorage.getItem('payment');
+    console.log(loginId, payment);
+    if (loginId) dispatch(setLoginIdFromLocalStorage(loginId));
+    if (payment) dispatch(setPaymentFromLocalStorage(Number(payment)));
+  }, [])
 
   const handleSetActiveTab = (index: number) => () => {
     setActiveTab(index);
