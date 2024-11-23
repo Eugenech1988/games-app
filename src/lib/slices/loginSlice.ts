@@ -8,8 +8,8 @@ type LoginState = {
 }
 
 const initialState: LoginState = {
-  id: '',
-  payment: 0
+  id: JSON.parse((typeof window !== 'undefined') ? <string>localStorage.getItem('id') : ''),
+  payment: JSON.parse((typeof window !== 'undefined') ? <string>localStorage.getItem('payment') : 0)
 };
 
 const loginSlice = createSlice({
