@@ -1,9 +1,9 @@
 # RAWG simple app
 
 To launch this app for the beginning install all dependencies:
-npm install or yarn.
+PNPM install or YARN.
 
-After this launch npm run dev or launch yarn dev
+After this launch PNPM run dev or launch YARN dev
 
 Decisions were maid
 -
